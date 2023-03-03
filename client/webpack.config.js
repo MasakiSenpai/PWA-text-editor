@@ -25,7 +25,8 @@ module.exports = () => {
         swDest: 'src-sw.js'
       }),
       new WebpackPwaManifest({
-        name: 'JATE',
+        name: 'Just another text editor',
+        short_name: 'JATE',
         fingerprints: false,
         inject: true,
         start_url: '/',
@@ -50,11 +51,14 @@ module.exports = () => {
         },
         {
           test: /\.m?js$/,
-          exclude: /(node_modules|bower_components)/,
+          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: [
+                '@babel/plugin-preposal-object-rest-spread', '@babel/transform-runtime'
+              ]
             },
           },
         },
